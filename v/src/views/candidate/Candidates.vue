@@ -6,7 +6,7 @@
           <span class="text-title">Ứng viên</span>
         </div>
         <div class="content-header-button btn-group" id="btnCreate">
-          <button class="btn btn-primary btn-icon" id="addUser">
+          <button class="btn btn-primary btn-icon" id="addUser" @click="showPopup = true">
             <div class="icon icon-plus"></div>
             <span>Thêm ứng viên</span>
           </button>
@@ -24,13 +24,22 @@
         @update:selected="selectedCandidates = $event"
       />
     </div>
+
+    <AddCandidatePopup
+        v-if="showPopup"
+        @close="showPopup = false"
+        @save="addCandidate"
+      />
   </div>
+
+   
 </template>
 
 <script setup>
 // import '@/assets/styles/components/table.scss'
 import { ref, onMounted } from 'vue'
 import CandidateTable from './CandidateTable.vue'
+import AddCandidatePopup from './AddCandidatePopup.vue'
 
 const fields = [
   { key: 'CandidateName', label: 'Họ và tên', style: { minWidth: '20px' } },
@@ -44,7 +53,21 @@ const fields = [
   { key: 'Gender', label: 'Giới tính', style: { minWidth: '200px' } },
 ]
 
+const showPopup = ref(false)
 const candidates = ref([])
+
+const addCandidate = (newCandidate) => {
+  const item = {
+    CandidateName: newCandidate.name,
+    Mobile: newCandidate.phone,
+    Email: newCandidate.email,
+    Address: newCandidate.address,
+  }
+
+  candidates.value.push(item)
+  localStorage.setItem('candidates', JSON.stringify(candidates.value))
+}
+
 
 onMounted(() => {
   const stored = localStorage.getItem('candidates')
