@@ -42,64 +42,12 @@
         </div>
 
         <div class="content-detail-table">
-          <table class="user-table" id="candidateTable">
-            <thead>
-              <tr>
-                <th class="text-align-center" style="min-width: 48px">
-                  <input type="checkbox" id="selectAll" />
-                </th>
-                <th class="text-align-left" style="min-width: 250px">Họ và tên</th>
-                <th class="text-align-left" style="min-width: 200px">Số điện thoại</th>
-                <th class="text-align-left" style="min-width: 200px">Email</th>
-                <th class="text-align-left" style="min-width: 200px">Chiến dịch tuyển dụng</th>
-                <th class="text-align-left" style="min-width: 200px">Vị trí tuyển dụng</th>
-                <th class="text-align-left" style="min-width: 200px">Tin tuyển dụng</th>
-                <th class="text-align-left" style="min-width: 200px">Vòng tuyển dụng</th>
-                <th class="text-align-left" style="min-width: 200px">Đánh giá</th>
-                <th class="text-align-left" style="min-width: 200px">Ngày ứng tuyển</th>
-                <th class="text-align-left" style="min-width: 200px">Nguồn ứng viên</th>
-                <th class="text-align-left" style="min-width: 200px">Trình độ đào tạo</th>
-                <th class="text-align-left" style="min-width: 200px">Nơi đào tạo</th>
-                <th class="text-align-left" style="min-width: 200px">Chuyên ngành</th>
-                <th class="text-align-left" style="min-width: 200px">Nơi làm việc gần đây</th>
-                <th class="text-align-left" style="min-width: 200px">Nhân sự khai thác</th>
-                <th class="text-align-left" style="min-width: 200px">Đơn vị sử dụng</th>
-                <th class="text-align-left" style="min-width: 200px">Phù hợp với chân dung</th>
-                <th class="text-align-left" style="min-width: 200px">Khu vực</th>
-                <th class="text-align-left" style="min-width: 200px">Người giới thiệu</th>
-                <th class="text-align-left" style="min-width: 200px">Thông tin tiếp nhận</th>
-                <th class="text-align-left" style="min-width: 200px">Thuộc kho tiềm năng</th>
-                <th class="text-align-left" style="min-width: 200px">Tài khoản cổng ứng viên</th>
-                <th class="text-align-left" style="min-width: 200px">Thẻ</th>
-                <th class="text-align-left" style="min-width: 200px">Trạng thái</th>
-                <th class="text-align-left" style="min-width: 200px">Giới tính</th>
-                <th class="text-align-center" style="min-width: 200px">Ngày sinh</th>
-                <th class="text-align-left" style="min-width: 200px">Địa chỉ</th>
-                <th class="text-align-left" style="min-width: 200px">Lý do loại</th>
-                <th class="text-align-left" style="min-width: 200px">Cộng tác viên</th>
-                <th class="text-align-left" style="min-width: 200px">Ngày tiếp nhận</th>
-                <th class="text-align-left" style="min-width: 200px">Trạng thái mời nhận việc</th>
-
-                <th style="width: 50px"></th>
-              </tr>
-            </thead>
-            <tbody>
-               <tr v-for="(item, index) in candidates" :key="index">
-                  <td class="text-align-center"><input type="checkbox"></td>
-                <td>{{ item.CandidateName }}</td>
-                <td>{{ item.Mobile }}</td>
-                <td>{{ item.Email }}</td>
-                <td>{{ item.RecruitmentName }}</td>
-                <td>{{ item.ApplyDate }}</td>
-                <td>{{ item.ChannelName }}</td>
-                <td>{{ item.AreaName }}</td>
-                <td>{{ item.Address }}</td>
-              </tr>
-
-
-
-            </tbody>
-          </table>
+          <MSTable
+            :fields="fields"
+            :rows="candidates"
+            :showCheckbox="true"
+            @update:selected="selectedCandidates = $event"
+          />
         </div>
 
         <div class="content-detail-footer">
@@ -128,8 +76,22 @@
 </template>
 
 <script setup>
-import '@/assets/styles/components/table.scss';
+// import '@/assets/styles/components/table.scss'
+import MSTable from '@/components/common/MsTable.vue'
 import { ref, onMounted } from 'vue'
+
+const fields = [
+  { key: 'CandidateName', label: 'Họ và tên', style: { minWidth: '250px' } },
+  { key: 'Mobile', label: 'Số điện thoại', style: { minWidth: '200px' } },
+  { key: 'Email', label: 'Email', style: { minWidth: '200px' } },
+  { key: 'RecruitmentName', label: 'Chiến dịch tuyển dụng', style: { minWidth: '200px' } },
+  { key: 'ApplyDate', label: 'Ngày ứng tuyển', style: { minWidth: '200px' } },
+  { key: 'ChannelName', label: 'Nguồn ứng viên', style: { minWidth: '200px' } },
+  { key: 'AreaName', label: 'Khu vực', style: { minWidth: '200px' } },
+  { key: 'Address', label: 'Địa chỉ', style: { minWidth: '200px' } },
+  { key: 'Gender', label: 'Giới tính', style: { minWidth: '200px' } }
+]
+
 const candidates = ref([])
 
 onMounted(() => {
@@ -143,8 +105,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
-
 .page-content {
   background-color: #ebecef;
   flex: 1;

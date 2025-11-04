@@ -34,11 +34,13 @@
 
 .user-table th,
 .user-table td {
+  text-align: left;
   padding: 8px 12px;
   white-space: nowrap;       
   overflow: hidden;          
   text-overflow: ellipsis;   
 }
+
 
 .user-table th{
   border: 1px solid #E6EBEF;
