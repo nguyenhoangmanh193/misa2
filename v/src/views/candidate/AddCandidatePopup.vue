@@ -1,5 +1,5 @@
 <template>
-  <div id="overlayPopup" class="overlay" @click.self="closePopup">
+  <div id="overlayPopup" class="overlay"  v-if="model" @click.self="closePopup">
     <div class="popup-content">
       <!-- Header -->
       <div class="popup_header">
@@ -214,7 +214,7 @@
 <script setup>
 import { ref, defineEmits } from 'vue'
 
-const emit = defineEmits(['close', 'save'])
+const model = defineModel('open',{ type: Boolean, required: true })
 
 const form = ref({
   name: '',
@@ -226,7 +226,7 @@ const form = ref({
 })
 
 const closePopup = () => {
-  emit('close')
+    model.value = false
 }
 
 const handleSave = () => {

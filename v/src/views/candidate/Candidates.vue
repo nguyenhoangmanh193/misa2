@@ -25,11 +25,7 @@
       />
     </div>
 
-    <AddCandidatePopup
-        v-if="showPopup"
-        @close="showPopup = false"
-        @save="addCandidate"
-      />
+    <AddCandidatePopup v-model:open="showPopup" @save="addCandidate" />
   </div>
 
    
