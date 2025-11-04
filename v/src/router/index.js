@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Candidates from '@/views/Recruit/Candidates.vue'
-import Other from '@/views/Recruit/Other.vue'
-import PageContent from '@/components/layout/PageContent.vue'
+import Candidates from '@/views/candidate/Candidates.vue'
+import Other from '@/views/other/Other.vue'
+import PageContent from '@/layout/PageContent.vue'
 
 const routes = [
    {

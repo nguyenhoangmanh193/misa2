@@ -1,0 +1,89 @@
+/* .user-table th:first-child,
+.user-table td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: #fff; 
+    z-index: 2; 
+    box-shadow: 2px 0 5px -2px rgba(0,0,0,0.2); 
+} */
+
+.user-table{
+    border-collapse: collapse;
+}
+
+/* Cố định header table */
+.user-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #F9FAFB;
+    z-index: 3; 
+
+}
+
+.user-table tr {
+  border-bottom: 1px solid #e0e0e0;
+  height: 48px;
+
+}
+
+.user-table tr td,
+.user-table tr th {
+  padding: 0 12px 0 12px;
+}
+
+
+.user-table th,
+.user-table td {
+  padding: 8px 12px;
+  white-space: nowrap;       
+  overflow: hidden;          
+  text-overflow: ellipsis;   
+}
+
+.user-table th{
+  border: 1px solid #E6EBEF;
+}
+
+
+.user-table .text-align-left{
+   text-align: left;
+}
+.user-table .text-align-right{
+  text-align: right;
+}
+.user-table .text-align-center{
+  text-align: center;
+}
+
+.user-table th:first-child input[type="checkbox"],
+.user-table td:first-child input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+
+.input.valid, select.valid, textarea.valid {
+  border-color: #28a745 !important; 
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+}
+
+input.error, select.error, textarea.error {
+  border-color: #dc3545 !important; 
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+}
+
+.content-detail-table tbody tr {
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.content-detail-table tbody tr:hover {
+  background-color: #f0f7ff;     
+  box-shadow: inset 0 0 0 9999px rgba(0, 123, 255, 0.05);
+}
+
+
+.content-detail-table tbody tr.selected {
+  background-color: #e3f2fd !important;
+  box-shadow: inset 0 0 0 9999px rgba(0, 123, 255, 0.1);
+}

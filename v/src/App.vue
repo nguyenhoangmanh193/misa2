@@ -6,9 +6,11 @@
 </template>
 
 <script setup lang="ts">
-import Header from './components/layout/Header.vue'
+import Header from './layout/Header.vue';
+import { userData } from './services/candidate.js';
+localStorage.setItem('candidates', JSON.stringify(userData));
 </script>
-
+    
 
 <style>
 

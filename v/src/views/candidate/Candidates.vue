@@ -83,7 +83,22 @@
                 <th style="width: 50px"></th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+               <tr v-for="(item, index) in candidates" :key="index">
+                  <td class="text-align-center"><input type="checkbox"></td>
+                <td>{{ item.CandidateName }}</td>
+                <td>{{ item.Mobile }}</td>
+                <td>{{ item.Email }}</td>
+                <td>{{ item.RecruitmentName }}</td>
+                <td>{{ item.ApplyDate }}</td>
+                <td>{{ item.ChannelName }}</td>
+                <td>{{ item.AreaName }}</td>
+                <td>{{ item.Address }}</td>
+              </tr>
+
+
+
+            </tbody>
           </table>
         </div>
 
@@ -112,9 +127,24 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import '@/assets/styles/components/table.scss';
+import { ref, onMounted } from 'vue'
+const candidates = ref([])
+
+onMounted(() => {
+  const stored = localStorage.getItem('candidates')
+  if (stored) {
+    candidates.value = JSON.parse(stored)
+  } else {
+    console.warn('Chưa có dữ liệu trong localStorage')
+  }
+})
+</script>
 
 <style scoped>
+
+
 .page-content {
   background-color: #ebecef;
   flex: 1;
