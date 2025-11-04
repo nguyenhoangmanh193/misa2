@@ -1,0 +1,85 @@
+.btn {
+    min-width: 80px;
+    height: 36px;
+    border-radius: 4px;
+    border: none;
+    padding: 0px 16px 0 16px;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-button {
+    min-width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    border: none;
+    padding: 0px 16px 0 16px;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--color-primary-web);
+    color: var(--color-title-dark);
+}
+
+.btn-icon {
+    padding: 0px 16px 0 12px;
+}
+
+
+.btn-group {
+    display: inline-flex;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+
+
+.btn-group .btn:first-child {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.btn-group .btn-button:last-child {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: 1px solid var(--color-border-light);
+}
+
+.btn.dropdown-btn {
+    padding: 0;
+}
+
+.btn-link {
+    height: 36px;
+    border: none;
+    width: auto;
+    padding: 0px 16px 0 16px;
+    background: transparent;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+}
+
+
+.btn-form {
+    background-color: transparent;
+    color: var(--color-primary-web);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+}
+
+.btn-form .icon-plus {
+    background-color: var(--color-primary-web);
+}

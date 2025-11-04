@@ -1,0 +1,261 @@
+.icon {
+  mask-image: url("@/assets/images/ICON.svg");
+  mask-repeat: no-repeat;
+  border: none;
+  display: inline-block;
+}
+
+.icon-1 {
+  background-image: url('@/assets/images/ICON.svg');
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.icon-menu {
+  mask-position: -14px -47px;
+  width: 19px;
+  height: 18px;
+  background-color: var(--color-secondary-text-light);
+}
+
+.icon-logo {
+  background-position: -53px -411px;
+  width: 54px;
+  height: 54px;
+  transform: scale(0.6);
+}
+
+.icon-logo-2 {
+  background-image: url("@/assets/images/logo-header.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  transform: scale(0.8);
+}
+
+.icon-search {
+  mask-position: -283px -945px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-disabled-light);
+}
+
+.icon-global {
+  mask-position: 0px -608px;
+  width: 21px;
+  height: 21px;
+  background-color: var(--color-secondary-text-light);
+}
+
+.icon-voice {
+  mask-image: url("@/assets/images/voice.svg");
+  mask-repeat: no-repeat;
+  mask-position: 0 0;
+  mask-size: contain;
+  background-color: var(--color-secondary-text-light);
+  width: 24px;
+  height: 24px;
+}
+
+.icon-store {
+  background-image: url("@/assets/images/store.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  transform: scale(0.8);
+}
+
+.icon-message {
+  background-position: -282px -562px;
+  width: 20px;
+  height: 20px;
+
+}
+
+.icon-nofi {
+  mask-position: -2px -634px;
+  width: 20px;
+  height: 21px;
+  background-color: var(--color-secondary-text-light);
+}
+
+.icon-question {
+  mask-position: -236px -942px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-secondary-text-light);
+}
+
+.icon-detail {
+  mask-position: -260px -942px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-secondary-text-light);
+}
+
+.icon-book {
+  mask-image: url("@/assets/images/book.svg");
+  mask-repeat: no-repeat;
+  mask-position: 0 0;
+  mask-size: contain;
+  background-color: #FEAF3C;
+  width: 24px;
+  height: 24px;
+}
+
+/* Sidebar icon */
+
+.icon-sidebar-news {
+  mask-position: -96px -113px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+.icon-sidebar-candidate {
+  mask-position: -24px -112px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+.icon-sidebar-calendar {
+  mask-position: -144px -113px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+.icon-sidebar-ware {
+  mask-position: -0px -112px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+.icon-sidebar-marketing {
+  mask-position: -73px -633px;
+  width: 22px;
+  height: 22px;
+  background-color: var(--color-primary-text-dark);
+  transform: scale(1.09);
+}
+
+.icon-sidebar-task {
+  mask-position: -336px -113px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+.icon-sidebar-mail {
+  mask-position: -160px -248px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+
+.icon-sidebar-mes {
+  mask-position: -72px -845px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+.icon-sidebar-report {
+  mask-position: -72px -113px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+.icon-sidebar-setting {
+  mask-position: 0 -136px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-text-dark);
+}
+
+
+.icon-sidebar-other {
+  mask-position: -359px -614px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-title-dark);
+}
+
+
+
+.icon-sidebar-left {
+  mask-position: -60px -696px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-secondary-text-light);
+}
+
+.icon-sidebar-right {
+  mask-position: -40px -696px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-secondary-text-light);
+}
+
+.icon-dropdown {
+  mask-position: -32px -48px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-title-dark);
+}
+
+.icon-plus {
+  mask-position: -20px -656px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-title-dark);
+}
+
+.icon-filter {
+  mask-position: -40px -656px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-secondary-text-dark);
+}
+
+.icon-export {
+  mask-position: -60px -656px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-secondary-text-dark);
+}
+
+.icon-chart {
+  mask-position: -0px -844px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-secondary-text-dark);
+
+}
+
+.icon-setting {
+  mask-position: -24px -608px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-secondary-text-dark);
+
+}
+
+.icon-exit{
+  mask-position: -73px -136px;
+  width: 22px;
+  height: 24px;
+  background-color: var(--color-secondary-text-dark);
+  cursor: pointer;
+
+}

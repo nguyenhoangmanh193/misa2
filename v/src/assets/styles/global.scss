@@ -1,0 +1,58 @@
+@use './components/icons.scss' as *;
+@use './base/typography.scss' as *;
+@use './base/variables.scss' as *;
+@use './base/typography.scss' as *;
+@use './components/button.scss' as *;
+@use './components/toast.scss' as *;
+
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap";
+
+:root {
+  --color-primary-web: #2680EB;
+  --color-border-primary: #DDDDE4;
+  --color-title-light: #000000;
+  --color-primary-text-light: #212121;
+  --color-secondary-text-light: #666666;
+  --color-disabled-light: #9E9E9E;
+  --color-border-light: #E0E0E0;
+  --color-background-light: #F7F7F7;
+
+  --color-title-dark: #FFFFFF;
+  --color-primary-text-dark: #DBDEE3;
+  --color-secondary-text-dark: #7B8798;
+  --color-disabled-dark: #4B5B73;
+  --color-border-dark: #334560;
+  --color-background-dark: #182D4B;
+
+  --sidebar-width: 233px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
