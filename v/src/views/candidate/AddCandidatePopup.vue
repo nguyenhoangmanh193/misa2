@@ -12,16 +12,16 @@
         <form class="form" @submit.prevent="handleSave">
                     <div class="form-detail">
                         <label>Họ và tên <span>*</span></label>
-                        <input type="text" name="name" class="required" id="name" placeholder="Nhập họ và tên">
+                        <input v-model="form.name" type="text" name="name" class="required" id="name" placeholder="Nhập họ và tên">
                     </div>
                     <div class="form-section">
                         <div class="form-detail">
                             <label>Ngày sinh</label>
-                            <input type="date" name="birth" id="birth">
+                            <input v-model="form.birth" type="date" name="birth" id="birth">
                         </div>
                         <div class="form-detail">
                             <label>GIới tính</label>
-                            <select name="gender" id="gender">
+                            <select v-model="form.gender" name="gender" id="gender">
                                 <option value="" disabled selected hidden>Chọn giới tính</option>
                                 <option value="">Nam</option>
                                 <option value="">Nữ</option>
@@ -31,7 +31,7 @@
 
                     <div class="form-detail">
                         <label>Khu vực</label>
-                        <select name="area" id="area">
+                        <select v-model="form.area" name="area" id="area">
                             <option value="" disabled selected hidden>Chọn khu vực</option>
                             <option value="">Cầu giấy</option>
                             <option value="">Tây Hồ</option>
@@ -44,17 +44,17 @@
                     <div class="form-section">
                         <div class="form-detail">
                             <label>Số điện thoại</label>
-                            <input type="text" name="phone" id="phone" placeholder="Nhập số điện thoại">
+                            <input v-model="form.phone" type="text" name="phone" id="phone" placeholder="Nhập số điện thoại">
                         </div>
                         <div class="form-detail">
                             <label>Email</label>
-                            <input type="email" name="email" id="email" placeholder="Nhập Email">
+                            <input v-model="form.email" type="email" name="email" id="email" placeholder="Nhập Email">
                         </div>
                     </div>
 
                     <div class="form-detail">
                         <label>Địa chỉ</label>
-                        <input type="text" name="address" id="address" placeholder="Nhập địa chỉ">
+                        <input v-model="form.address" type="text" name="address" id="address" placeholder="Nhập địa chỉ">
                     </div>
 
                     <span class="uppercase">Học vấn</span>
@@ -64,7 +64,7 @@
                             style="flex-direction: row; align-items: center; justify-content: space-between;">
                             <label>• Trình độ đào tạo</label>
                             <div class="edu-select-wrapper">
-                                <select style="height: 36px;" id="education-degreeName">
+                                <select v-model="form.educationDegree" style="height: 36px;" id="education-degreeName">
                                     <option value="" hidden>Nhập trình độ đào tạo</option>
                                     <option>Đại học</option>
                                     <option>Cao đẳng</option>
@@ -78,9 +78,9 @@
 
                         <div class="form-detail "
                             style="flex-direction: row; align-items: center; justify-content: space-between;">
-                            <label>• Nơi đào tạo</label>
+                            <label >• Nơi đào tạo</label>
                             <div class="edu-select-wrapper">
-                                <select id="education-placeName">
+                                <select v-model="form.educationPlace" id="education-placeName">
                                     <option value="" hidden>Nhập nơi đào tạo</option>
                                     <option>HUST</option>
                                     <option>NEU</option>
@@ -96,7 +96,7 @@
                             style="flex-direction: row; align-items: center; justify-content: space-between;">
                             <label>• Chuyên ngành</label>
                             <div class="edu-select-wrapper" >
-                                <select id="education-majorName">
+                                <select v-model="form.educationMajor" id="education-majorName">
                                     <option value="" hidden>Nhập chuyên ngành</option>
                                     <option>Kế toán</option>
                                     <option>Marketing</option>
@@ -117,11 +117,11 @@
                     <div class="form-section">
                         <div class="form-detail">
                             <label>Ngày ứng tuyển</label>
-                            <input type="date" name="date-apply" id="date-apply">
+                            <input v-model="form.dateApply" type="date" name="date-apply" id="date-apply">
                         </div>
                         <div class="form-detail">
                             <label>Nguồn ứng viên</label>
-                            <select name="candidate-source" id="candidate-source">
+                            <select v-model="form.source" name="candidate-source" id="candidate-source">
                                 <option value="" disabled selected hidden>Chọn nguồn ứng viên</option>
                                 <option value="">Facebook</option>
                                 <option value="">Joko</option>
@@ -159,8 +159,8 @@
                     </button>
 
                     <div class="form-detail">
-                        <label>Nơi làm việc gần đây</label>
-                        <input type="text" name="place-recent" id="place-recent"
+                        <label >Nơi làm việc gần đây</label>
+                        <input v-model="form.placeRecent" type="text" name="place-recent" id="place-recent"
                             placeholder="Nhập nơi làm việc gần đây">
                     </div>
 
@@ -212,31 +212,58 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue'
+import { ref, defineModel, defineEmits } from 'vue'
 
-const model = defineModel('open',{ type: Boolean, required: true })
+const model = defineModel('open', { type: Boolean, required: true })
+const emit = defineEmits(['save']) // 🧩 thêm dòng này
 
 const form = ref({
   name: '',
   birth: '',
   gender: '',
+  area: '',
   phone: '',
   email: '',
   address: '',
+  educationDegree: '',
+  educationPlace: '',
+  educationMajor: '',
+  dateApply: '',
+  source: '',
+  personnel: '',
+  collaborator: '',
+  placeRecent: '',
+  positionRecent: '',
+  workDesc: ''
 })
 
 const closePopup = () => {
-    model.value = false
+  model.value = false
 }
 
 const handleSave = () => {
-  if (!form.value.name) {
-    alert('Vui lòng nhập họ và tên')
-    return
-  }
+  try {
+    const newCandidate = {
+      id: Date.now(),
+      ...form.value
+    }
 
-  emit('save', { ...form.value })
-  closePopup()
+    // 🔹 Gửi dữ liệu lên component cha
+    emit('save', newCandidate)
+
+    // Cũng có thể lưu localStorage tại đây nếu bạn muốn song song
+    const existing = JSON.parse(localStorage.getItem('candidates') || '[]')
+    existing.push(newCandidate)
+    localStorage.setItem('candidates', JSON.stringify(existing))
+
+    alert('Đã lưu ứng viên (kể cả dữ liệu trống).')
+
+    Object.keys(form.value).forEach(key => (form.value[key] = ''))
+    closePopup()
+  } catch (err) {
+    console.error('Lỗi khi lưu localStorage:', err)
+    alert('Có lỗi khi lưu ứng viên!')
+  }
 }
 </script>
 
@@ -353,5 +380,29 @@ const handleSave = () => {
 .form-detail textarea:focus {
   border-color: #007bff;
   outline: none;
+}
+
+.overlay {
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-content {
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
