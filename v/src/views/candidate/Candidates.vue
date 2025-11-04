@@ -81,7 +81,7 @@ import MSTable from '@/components/common/MsTable.vue'
 import { ref, onMounted } from 'vue'
 
 const fields = [
-  { key: 'CandidateName', label: 'Họ và tên', style: { minWidth: '250px' } },
+  { key: 'CandidateName', label: 'Họ và tên', style: { minWidth: '20px' } },
   { key: 'Mobile', label: 'Số điện thoại', style: { minWidth: '200px' } },
   { key: 'Email', label: 'Email', style: { minWidth: '200px' } },
   { key: 'RecruitmentName', label: 'Chiến dịch tuyển dụng', style: { minWidth: '200px' } },

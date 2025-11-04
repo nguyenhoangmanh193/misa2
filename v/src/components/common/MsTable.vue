@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <!-- Checkbox đầu bảng nếu cần -->
-          <th v-if="showCheckbox" class="text-align-center" style="min-width: 48px">
+          <th v-if="showCheckbox" class="checkbox-col" style="min-width: 48px">
             <input type="checkbox" v-model="allSelected" @change="toggleAll" />
           </th>
 
@@ -16,7 +16,7 @@
       <tbody>
         <tr v-for="(row, index) in rows" :key="index">
           <!-- Checkbox mỗi dòng -->
-          <td v-if="showCheckbox" class="text-align-center">
+          <td v-if="showCheckbox" class="checkbox-col checkbox-main">
             <input type="checkbox" v-model="selectedRows" :value="row" />
           </td>
 
@@ -67,12 +67,20 @@ watch(selectedRows, (newVal) => {
 </script>
 
 <style scoped>
-.user-table.has-checkbox th:first-child,
-.user-table.has-checkbox td:first-child {
+.user-table .checkbox-col {
   position: sticky;
   left: 0;
-  background-color: #fff;
-  z-index: 3;
-  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.2);
+  z-index: 10; 
+  box-shadow: 2px 0 5px -2px rgba(0,0,0,0.2);
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  text-align: center;
+  background-color: #F9FAFB;
 }
+
+.user-table .checkbox-col.checkbox-main {
+  background-color: #fff;
+}
+
 </style>
