@@ -12,7 +12,8 @@
         <form class="form" @submit.prevent="handleSave">
           <div class="form-detail">
             <label>Họ và tên <span>*</span></label>
-            <MsInput placeholder="Nhập họ và tên" v-model="form.name" />
+            <MsInput placeholder="Nhập họ và tên" v-model="form.name" :error="errors.name" 
+             @blur="validateField('name')"/>
           </div>
           <div class="form-section">
             <div class="form-detail">
@@ -47,7 +48,8 @@
             </div>
             <div class="form-detail">
               <label>Email</label>
-              <MsInput type="email" placeholder="Nhập Email" v-model="form.email" />
+              <MsInput type="email" placeholder="Nhập Email" v-model="form.email"
+              :error="errors.email" @blur="validateField('email')" />
             </div>
           </div>
 
@@ -233,33 +235,57 @@ const form = ref({
   workDesc: '',
 })
 
+const errors = ref({
+  name: '',
+  birth: '',
+  email: ''
+})
+
+// Hàm validate thủ công
+const validateField = (field) => {
+  switch (field) {
+    case 'name':
+      errors.value.name = form.value.name.trim() ? '' : 'Họ và tên không được để trống'
+      break
+   case 'email':
+  if (form.value.email.trim() && !/^\S+@\S+\.\S+$/.test(form.value.email)) {
+    errors.value.email = 'Email không hợp lệ'
+  } else {
+    errors.value.email = ''
+  }
+      break
+  }
+}
+
+// Hàm validate toàn bộ form
+const validate = () => {
+  validateField('name')
+  validateField('birth')
+  validateField('email')
+
+  return !errors.value.name && !errors.value.birth && !errors.value.email
+}
+
 const closePopup = () => {
   model.value = false
 }
 
 const handleSave = () => {
-  try {
-    const newCandidate = {
-      id: Date.now(),
-      ...form.value,
-    }
+  if (!validate()) return
 
-    // 🔹 Gửi dữ liệu lên component cha
-    emit('save', newCandidate)
+  const newCandidate = { id: Date.now(), ...form.value }
+  emit('save', newCandidate)
 
-    // Cũng có thể lưu localStorage tại đây nếu bạn muốn song song
-    const existing = JSON.parse(localStorage.getItem('candidates') || '[]')
-    existing.push(newCandidate)
-    localStorage.setItem('candidates', JSON.stringify(existing))
+  // Lưu localStorage
+  const existing = JSON.parse(localStorage.getItem('candidates') || '[]')
+  existing.push(newCandidate)
+  localStorage.setItem('candidates', JSON.stringify(existing))
 
-    alert('Đã lưu ứng viên (kể cả dữ liệu trống).')
+  alert('Đã lưu ứng viên.')
 
-    Object.keys(form.value).forEach((key) => (form.value[key] = ''))
-    closePopup()
-  } catch (err) {
-    console.error('Lỗi khi lưu localStorage:', err)
-    alert('Có lỗi khi lưu ứng viên!')
-  }
+  // Reset form
+  Object.keys(form.value).forEach((k) => (form.value[k] = ''))
+  closePopup()
 }
 </script>
 

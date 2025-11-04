@@ -1,5 +1,5 @@
 <template>
-  <!-- Input -->
+    <div class="ms-input-wrapper">
   <input
     v-if="type === 'text' || type === 'email' || type === 'date'"
     :type="type"
@@ -7,6 +7,8 @@
     :name="name"
     v-model="model"
     class="ms-input"
+    :class="{ 'error-border': error }"
+     @blur="$emit('blur')"
   />
 
   <!-- Select -->
@@ -15,6 +17,9 @@
     :name="name"
     v-model="model"
     class="ms-input"
+     :class="{ 'error-border': error }"
+      @blur="$emit('blur')"
+     
   >
     <option value="" hidden>{{ placeholder }}</option>
     <option
@@ -32,13 +37,20 @@
     :placeholder="placeholder"
     v-model="model"
     class="ms-textarea"
+     :class="{ 'error-border': error }"
+      @blur="$emit('blur')"
     rows="5"
+
   ></textarea>
+   <span v-if="error" class="error-text">{{ error }}</span>
+  </div>
+  <!-- Input -->
 </template>
 
 <script setup>
 import { defineProps, defineModel } from 'vue'
 
+const emit = defineEmits(['blur']) 
 const props = defineProps({
   placeholder: String,
   name: String,
@@ -49,7 +61,8 @@ const props = defineProps({
   options: {
     type: Array,
     default: () => []
-  }
+  },
+   error: String
 })
 
 // Cho phép dùng v-model ngoài component
@@ -103,5 +116,16 @@ const model = defineModel()
 
 .form-time input {
   width: 200px;
+}
+
+.error-border {
+  border-color: #e53935 !important;
+}
+
+.error-text {
+  margin-top: 4px;
+  color: #e53935;
+  font-size: 12px;
+  font-weight: 500;
 }
 </style>
