@@ -67,7 +67,6 @@ import { ref, computed, watch } from 'vue'
 import MSTable from '@/components/common/MsTable.vue'
 
 const props = defineProps({
-  fields: Array,
   rows: Array,
 })
 
@@ -76,6 +75,18 @@ const emit = defineEmits(['update:selected'])
 const searchText = ref('')
 const currentPage = ref(1)
 const pageSize = ref(15)
+
+
+const fields = [
+  { key: 'CandidateName', label: 'Họ và tên', style: { minWidth: '200px' } },
+  { key: 'Email', label: 'Email', style: { minWidth: '200px' } },
+  { key: 'RecruitmentName', label: 'Chiến dịch tuyển dụng', style: { minWidth: '200px' } },
+  { key: 'ApplyDate', label: 'Ngày ứng tuyển', style: { minWidth: '200px' } },
+  { key: 'ChannelName', label: 'Nguồn ứng viên', style: { minWidth: '200px' } },
+  { key: 'AreaName', label: 'Khu vực', style: { minWidth: '200px' } },
+  { key: 'Address', label: 'Địa chỉ', style: { minWidth: '200px' } },
+  { key: 'Gender', label: 'Giới tính', style: { minWidth: '200px' } },
+]
 
 // Filter rows
 const filteredRows = computed(() => {

@@ -19,7 +19,6 @@
 
       <!--  filter + table + pagination  -->
       <CandidateTable
-        :fields="fields"
         :rows="candidates"
         @update:selected="selectedCandidates = $event"
       />
@@ -37,17 +36,7 @@ import { ref, onMounted } from 'vue'
 import CandidateTable from './CandidateTable.vue'
 import AddCandidatePopup from './AddCandidatePopup.vue'
 
-const fields = [
-  { key: 'CandidateName', label: 'Họ và tên', style: { minWidth: '200px' } },
-  { key: 'Email', label: 'Email', style: { minWidth: '200px' } },
-  { key: 'RecruitmentName', label: 'Chiến dịch tuyển dụng', style: { minWidth: '200px' } },
-  { key: 'ApplyDate', label: 'Ngày ứng tuyển', style: { minWidth: '200px' } },
-  { key: 'ChannelName', label: 'Nguồn ứng viên', style: { minWidth: '200px' } },
-  { key: 'AreaName', label: 'Khu vực', style: { minWidth: '200px' } },
-  { key: 'Address', label: 'Địa chỉ', style: { minWidth: '200px' } },
-  { key: 'Gender', label: 'Giới tính', style: { minWidth: '200px' } },
 
-]
 const showPopup = ref(false)
 const candidates = ref([])
 
@@ -55,6 +44,7 @@ const addCandidate = (newCandidate) => {
   const item = {
     CandidateName: newCandidate.name,
     Email: newCandidate.email,
+    Gender: newCandidate.gender,
   }
 
   candidates.value.push(item)
