@@ -4,21 +4,18 @@
     v-if="type === 'text' || type === 'email' || type === 'date'"
     :type="type"
     :placeholder="placeholder"
-    :name="name"
-    v-model="model"
+     v-bind="field"
     class="ms-input"
     :class="{ 'error-border': error }"
-     @blur="$emit('blur')"
   />
 
   <!-- Select -->
   <select
     v-else-if="type === 'select'"
-    :name="name"
-    v-model="model"
+    v-bind="field"
     class="ms-input"
      :class="{ 'error-border': error }"
-      @blur="$emit('blur')"
+     
      
   >
     <option value="" hidden>{{ placeholder }}</option>
@@ -35,10 +32,9 @@
   <textarea
     v-else-if="type === 'textarea'"
     :placeholder="placeholder"
-    v-model="model"
+    v-bind="field"
     class="ms-textarea"
      :class="{ 'error-border': error }"
-      @blur="$emit('blur')"
     rows="5"
 
   ></textarea>
@@ -50,20 +46,15 @@
 <script setup>
 import { defineProps, defineModel } from 'vue'
 
-const emit = defineEmits(['blur']) 
 const props = defineProps({
+  type: { type: String, default: 'text' }, // text, email, date, select, textarea
   placeholder: String,
-  name: String,
-  type: {
-    type: String,
-    default: 'text' // text, email, date, select, textarea
-  },
-  options: {
-    type: Array,
-    default: () => []
-  },
-   error: String
+  options: { type: Array, default: () => [] },
+  error: String,
+  field: Object, // nhận từ VeeValidate Field
 })
+
+
 
 // Cho phép dùng v-model ngoài component
 const model = defineModel()

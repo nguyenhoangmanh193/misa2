@@ -7,194 +7,21 @@
         <button class="icon icon-exit" @click="closePopup">Đóng</button>
       </div>
 
-      <!-- Form -->
+        <!-- Form -->
       <div class="popup-form">
         <form class="form" @submit.prevent="handleSave">
           <div class="form-detail">
             <label>Họ và tên <span>*</span></label>
-            <MsInput placeholder="Nhập họ và tên" v-model="form.name" :error="errors.name" 
-             @blur="validateField('name')"/>
-          </div>
-          <div class="form-section">
-            <div class="form-detail">
-              <label>Ngày sinh</label>
-              <MsInput type="date" v-model="form.birth" />
-            </div>
-            <div class="form-detail">
-              <label>GIới tính</label>
-              <MsInput
-                type="select"
-                placeholder="Chọn giới tính"
-                :options="['Nam', 'Nữ']"
-                v-model="form.gender"
-              />
-            </div>
+           <Field name="name" v-slot="{ field, errors: fieldErrors }">
+              <MsInput v-bind="field" placeholder="Nhập họ và tên" :error="fieldErrors[0]" />
+            </Field>
           </div>
 
           <div class="form-detail">
-            <label>Khu vực</label>
-            <MsInput
-              type="select"
-              placeholder="Chọn khu vực"
-              :options="['Cầu Giấy', 'Tây Hồ', 'Thanh Xuân', 'Gia Lâm']"
-              v-model="form.area"
-            />
-          </div>
-
-          <div class="form-section">
-            <div class="form-detail">
-              <label>Số điện thoại</label>
-              <MsInput placeholder="Nhập số điện thoại" v-model="form.phone" />
-            </div>
-            <div class="form-detail">
-              <label>Email</label>
-              <MsInput type="email" placeholder="Nhập Email" v-model="form.email"
-              :error="errors.email" @blur="validateField('email')" />
-            </div>
-          </div>
-
-          <div class="form-detail">
-            <label>Địa chỉ</label>
-            <MsInput placeholder="Nhập địa chỉ" v-model="form.address" />
-          </div>
-
-          <span class="uppercase">Học vấn</span>
-
-          <div class="form-section" style="flex-direction: column">
-            <div
-              class="form-detail"
-              style="flex-direction: row; align-items: center; justify-content: space-between"
-            >
-              <label>• Trình độ đào tạo</label>
-              <div class="edu-select-wrapper">
-                <MsInput
-                  type="select"
-                  placeholder="Nhập trình độ đào tạo"
-                  :options="['Đại học', 'Cao đẳng', 'Thạc sĩ', 'Tiến sĩ']"
-                  v-model="form.educationDegree"
-                />
-                <span class="icon-plus">+</span>
-              </div>
-            </div>
-
-            <div
-              class="form-detail"
-              style="flex-direction: row; align-items: center; justify-content: space-between"
-            >
-              <label>• Nơi đào tạo</label>
-              <div class="edu-select-wrapper">
-                <MsInput
-                  type="select"
-                  placeholder="Nhập nơi đào tạo"
-                  :options="['HUST', 'NEU', 'KTA', 'PTIT']"
-                  v-model="form.educationPlace"
-                />
-                <span class="icon-plus">+</span>
-              </div>
-            </div>
-
-            <div
-              class="form-detail"
-              style="flex-direction: row; align-items: center; justify-content: space-between"
-            >
-              <label>• Chuyên ngành</label>
-              <div class="edu-select-wrapper">
-                <MsInput
-                  type="select"
-                  placeholder="Nhập chuyên ngành"
-                  :options="['Kế toán', 'Marketing', 'Grab']"
-                  v-model="form.educationMajor"
-                />
-                <span class="icon-plus">+</span>
-              </div>
-            </div>
-          </div>
-
-          <hr />
-
-          <button class="btn btn-primary btn-icon btn-form">
-            <div class="icon icon-plus"></div>
-            <span>Thêm học vấn</span>
-          </button>
-
-          <div class="form-section">
-            <div class="form-detail">
-              <label>Ngày ứng tuyển</label>
-              <MsInput type="date" v-model="form.dateApply" />
-            </div>
-            <div class="form-detail">
-              <label>Nguồn ứng viên</label>
-              <MsInput
-                type="select"
-                placeholder="Chọn nguồn ứng viên"
-                :options="['Facebook', 'Joko']"
-                v-model="form.source"
-              />
-            </div>
-          </div>
-
-          <div class="form-section">
-            <div class="form-detail">
-              <label>Nhân sự khai thác</label>
-              <MsInput type="select" :options="['Đinh Nga', 'Fads']" v-model="form.personnel" />
-            </div>
-            <div class="form-detail">
-              <label>Cộng tác viên</label>
-              <MsInput
-                type="select"
-                placeholder="Chọn cộng tác viên"
-                :options="['@@@@@@', 'Khác']"
-                v-model="form.collaborator"
-              />
-            </div>
-          </div>
-
-          <div class="form-detail" style="flex-direction: row; align-items: center; gap: 16px">
-            <input type="checkbox" />
-            <span>Thêm nhanh người tham chiếu vào kho ứng viên</span>
-          </div>
-
-          <button class="btn btn-primary btn-icon btn-form">
-            <div class="icon icon-plus"></div>
-            <span>Thêm người giới thiệu</span>
-          </button>
-
-          <div class="form-detail">
-            <label>Nơi làm việc gần đây</label>
-            <MsInput placeholder="Nhập nơi làm việc gần đây" v-model="form.placeRecent" />
-          </div>
-
-          <hr />
-
-          <button class="btn btn-primary btn-icon btn-form">
-            <div class="icon icon-plus"></div>
-            <span>Thêm kinh nghiệm làm việc</span>
-          </button>
-
-          <div class="form-detail">
-            <label>Nơi làm việc</label>
-            <MsInput placeholder="Nhập nơi làm việc" />
-          </div>
-
-          <div class="form-section">
-            <div class="form-detail">
-              <label>Thời gian </label>
-              <div class="form-time">
-                <MsInput type="date" />
-                <span>-</span>
-                <MsInput type="date" />
-              </div>
-            </div>
-          </div>
-
-          <div class="form-detail">
-            <label>Vị trí công việc</label>
-            <MsInput type="textarea" placeholder="Nhập mô tả công việc" />
-          </div>
-
-          <div class="form-detail">
-            <label>Mô tả công việc</label>
-            <MsInput type="textarea" placeholder="Nhập mô tả công việc" v-model="form.workDesc" />
+            <label>Email</label>
+             <Field name="email" v-slot="{ field, errors: fieldErrors }">
+              <MsInput v-bind="field" type="email" placeholder="Nhập Email" :error="fieldErrors[0]" />
+            </Field>
           </div>
         </form>
       </div>
@@ -211,69 +38,36 @@
 <script setup>
 import { ref, defineModel, defineEmits } from 'vue'
 import MsInput from '@/components/common/MsInput.vue'
+import { Form, Field, useForm } from 'vee-validate'
+import * as yup from 'yup'
 
 const model = defineModel('open', { type: Boolean, required: true })
 const emit = defineEmits(['save']) // 🧩 thêm dòng này
 
-const form = ref({
-  name: '',
-  birth: '',
-  gender: '',
-  area: '',
-  phone: '',
-  email: '',
-  address: '',
-  educationDegree: '',
-  educationPlace: '',
-  educationMajor: '',
-  dateApply: '',
-  source: '',
-  personnel: '',
-  collaborator: '',
-  placeRecent: '',
-  positionRecent: '',
-  workDesc: '',
+// Schema validation
+const schema = yup.object({
+  name: yup.string().required('Họ và tên không được để trống'),
+  email: yup.string().email('Email không hợp lệ'),
 })
 
-const errors = ref({
-  name: '',
-  birth: '',
-  email: ''
+// Form submit
+const { handleSubmit, resetForm } = useForm({
+  validationSchema: schema,
+  initialValues: {
+    name: '',
+    email: '',
+  },
 })
 
-// Hàm validate thủ công
-const validateField = (field) => {
-  switch (field) {
-    case 'name':
-      errors.value.name = form.value.name.trim() ? '' : 'Họ và tên không được để trống'
-      break
-   case 'email':
-  if (form.value.email.trim() && !/^\S+@\S+\.\S+$/.test(form.value.email)) {
-    errors.value.email = 'Email không hợp lệ'
-  } else {
-    errors.value.email = ''
-  }
-      break
-  }
-}
 
-// Hàm validate toàn bộ form
-const validate = () => {
-  validateField('name')
-  validateField('birth')
-  validateField('email')
 
-  return !errors.value.name && !errors.value.birth && !errors.value.email
-}
 
 const closePopup = () => {
   model.value = false
 }
 
-const handleSave = () => {
-  if (!validate()) return
-
-  const newCandidate = { id: Date.now(), ...form.value }
+const handleSave = handleSubmit((values) => {
+  const newCandidate = { id: Date.now(), ...values }
   emit('save', newCandidate)
 
   // Lưu localStorage
@@ -282,11 +76,9 @@ const handleSave = () => {
   localStorage.setItem('candidates', JSON.stringify(existing))
 
   alert('Đã lưu ứng viên.')
-
-  // Reset form
-  Object.keys(form.value).forEach((k) => (form.value[k] = ''))
+  resetForm()
   closePopup()
-}
+})
 </script>
 
 <style scoped>
