@@ -9,7 +9,7 @@
 
         <!-- Form -->
       <div class="popup-form">
-        <form class="form" @submit.prevent="handleSave">
+        <Form class="form" :validation-schema="schema" v-slot="{ handleSubmit, resetForm, errors }">
           <div class="form-detail">
             <label>Họ và tên <span>*</span></label>
            <Field name="name" v-slot="{ field, errors: fieldErrors }">
@@ -23,14 +23,16 @@
               <MsInput v-bind="field" type="email" placeholder="Nhập Email" :error="fieldErrors[0]" />
             </Field>
           </div>
-        </form>
-      </div>
 
-      <!-- Footer -->
+          <!-- Footer -->
       <div class="popup-footer">
         <button class="btn" @click="closePopup">Hủy</button>
-        <button class="btn btn-primary" @click="handleSave">Lưu</button>
+        <button class="btn btn-primary" @click="handleSubmit(onSubmit)">Lưu</button>
       </div>
+        </Form>
+      </div>
+
+      
     </div>
   </div>
 </template>
@@ -38,7 +40,7 @@
 <script setup>
 import { ref, defineModel, defineEmits } from 'vue'
 import MsInput from '@/components/common/MsInput.vue'
-import { Form, Field, useForm } from 'vee-validate'
+import { Form, Field } from 'vee-validate'
 import * as yup from 'yup'
 
 const model = defineModel('open', { type: Boolean, required: true })
@@ -50,14 +52,6 @@ const schema = yup.object({
   email: yup.string().email('Email không hợp lệ'),
 })
 
-// Form submit
-const { handleSubmit, resetForm } = useForm({
-  validationSchema: schema,
-  initialValues: {
-    name: '',
-    email: '',
-  },
-})
 
 
 
@@ -66,11 +60,12 @@ const closePopup = () => {
   model.value = false
 }
 
-const handleSave = handleSubmit((values) => {
+
+// Form submit
+const onSubmit = (values, { resetForm }) => {
   const newCandidate = { id: Date.now(), ...values }
   emit('save', newCandidate)
 
-  // Lưu localStorage
   const existing = JSON.parse(localStorage.getItem('candidates') || '[]')
   existing.push(newCandidate)
   localStorage.setItem('candidates', JSON.stringify(existing))
@@ -78,7 +73,7 @@ const handleSave = handleSubmit((values) => {
   alert('Đã lưu ứng viên.')
   resetForm()
   closePopup()
-})
+}
 </script>
 
 <style scoped>
