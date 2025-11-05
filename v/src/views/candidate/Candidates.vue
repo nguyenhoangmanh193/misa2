@@ -49,6 +49,7 @@ const addCandidate = (newCandidate) => {
 
   candidates.value.push(item)
   localStorage.setItem('candidates', JSON.stringify(candidates.value))
+  alert('Đã lưu ứng viên.')
 }
 
 

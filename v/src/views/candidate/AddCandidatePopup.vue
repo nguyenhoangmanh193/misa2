@@ -44,8 +44,8 @@
 
           <!-- Footer -->
           <div class="popup-footer">
-            <button class="btn" @click="closePopup">Hủy</button>
-            <button class="btn btn-primary" @click="handleSubmit(onSubmit)">Lưu</button>
+            <button type="button" class="btn" @click="closePopup">Hủy</button>
+            <button type="button" class="btn btn-primary" @click="handleSubmit(onSubmit)">Lưu</button>
           </div>
         </Form>
       </div>
@@ -77,11 +77,6 @@ const onSubmit = (values, { resetForm }) => {
   const newCandidate = { id: Date.now(), ...values }
   emit('save', newCandidate)
 
-  const existing = JSON.parse(localStorage.getItem('candidates') || '[]')
-  existing.push(newCandidate)
-  localStorage.setItem('candidates', JSON.stringify(existing))
-
-  alert('Đã lưu ứng viên.')
   resetForm()
   closePopup()
 }
