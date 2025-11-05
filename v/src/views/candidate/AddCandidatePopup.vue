@@ -7,32 +7,48 @@
         <button class="icon icon-exit" @click="closePopup">Đóng</button>
       </div>
 
-        <!-- Form -->
+      <!-- Form -->
       <div class="popup-form">
         <Form class="form" :validation-schema="schema" v-slot="{ handleSubmit, resetForm, errors }">
           <div class="form-detail">
             <label>Họ và tên <span>*</span></label>
-           <Field name="name" v-slot="{ field, errors: fieldErrors }">
+            <Field name="name" v-slot="{ field, errors: fieldErrors }">
               <MsInput v-bind="field" placeholder="Nhập họ và tên" :error="fieldErrors[0]" />
             </Field>
           </div>
 
           <div class="form-detail">
             <label>Email</label>
-             <Field name="email" v-slot="{ field, errors: fieldErrors }">
-              <MsInput v-bind="field" type="email" placeholder="Nhập Email" :error="fieldErrors[0]" />
+            <Field name="email" v-slot="{ field, errors: fieldErrors }">
+              <MsInput
+                v-bind="field"
+                type="email"
+                placeholder="Nhập Email"
+                :error="fieldErrors[0]"
+              />
+            </Field>
+          </div>
+
+          <div class="form-detail">
+            <label>Giới tính <span>*</span></label>
+            <Field name="gender" v-slot="{ field, errors: fieldErrors }">
+              <MsInput
+                v-bind="field"
+                type="select"
+                :options="['Nam', 'Nữ', 'Khác']"
+                placeholder="Chọn giới tính"
+                :error="fieldErrors[0]"
+              />
             </Field>
           </div>
 
           <!-- Footer -->
-      <div class="popup-footer">
-        <button class="btn" @click="closePopup">Hủy</button>
-        <button class="btn btn-primary" @click="handleSubmit(onSubmit)">Lưu</button>
-      </div>
+          <div class="popup-footer">
+            <button class="btn" @click="closePopup">Hủy</button>
+            <button class="btn btn-primary" @click="handleSubmit(onSubmit)">Lưu</button>
+          </div>
         </Form>
       </div>
-
-      
     </div>
   </div>
 </template>
@@ -52,14 +68,9 @@ const schema = yup.object({
   email: yup.string().email('Email không hợp lệ'),
 })
 
-
-
-
-
 const closePopup = () => {
   model.value = false
 }
-
 
 // Form submit
 const onSubmit = (values, { resetForm }) => {
@@ -143,8 +154,6 @@ const onSubmit = (values, { resetForm }) => {
   flex-direction: column;
 }
 
-
-
 .popup-form label,
 .popup-form span {
   font-size: 14px;
@@ -164,7 +173,6 @@ const onSubmit = (values, { resetForm }) => {
 .form-detail .form-time input {
   width: 200px;
 }
-
 
 .overlay {
   animation: fadeIn 0.3s ease;
